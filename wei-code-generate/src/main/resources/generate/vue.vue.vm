@@ -1,0 +1,274 @@
+<template>
+    <div class="shows">
+        <!--操作按钮-->
+        <el-row class="optionBar">
+            <el-button @click="addHandler" type="primary">添加</el-button>
+        </el-row>
+        <!--弹出框-->
+        <el-dialog :title="handlerDialogTitle" @closed="handleClosed" :visible.sync="handlerDialog" :center="true" :destroy-on-close="true" :modal="false">
+            <el-form :model="formObj" label-width="80px" ref="dialogForm" :rules="addRules">
+#foreach ($column in $data.columns)
+#if($column.insert)
+                <el-form-item label="$column.columnComment" prop="$column.columnName">
+                    <el-input v-model="formObj.$column.columnName" autocomplete="off"></el-input>
+                </el-form-item>
+#end
+#end
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="submitForm('dialogForm')" type="success">提交</el-button>
+                <el-button @click="handlerDialog = false">取消</el-button>
+            </div>
+        </el-dialog>
+        <!--筛选等-->
+        <el-row class="switchBar">
+            <el-col :span="24">
+                <el-form :inline="true" :model="queryObj" class="demo-form-inline">
+#foreach ($column in $data.columns)
+#if($column.query)
+                    <el-form-item label="$column.columnComment">
+                        <el-input clearable v-model="queryObj.$column.columnName" placeholder="请填写$column.columnComment"></el-input>
+                    </el-form-item>
+#end
+#end
+                    <el-form-item label="添加时间">
+                        <el-date-picker
+                                type="daterange"
+                                range-separator="至"
+                                start-placeholder="开始日期"
+                                v-model="timeRanger"
+                                value-format="timestamp"
+                                end-placeholder="结束日期">
+                        </el-date-picker>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button type="success" @click="search">查询</el-button>
+                    </el-form-item>
+                </el-form>
+            </el-col>
+        </el-row>
+        <el-row class="tableBar">
+            <el-table :data="tableData" border style="width: 100%">
+#foreach ($column in $data.columns)
+                <el-table-column prop="$column.columnName" label="$column.columnComment"></el-table-column>
+#end
+                <el-table-column label="操作" width="150" fixed="right">
+                    <template slot-scope="scope">
+                        <el-button type="primary" @click="updateHandler(scope.row.${data.primaryName})" plain size="mini">编辑
+                        </el-button>
+                        <el-button type="danger" @click="deleteHandler(scope.row.${data.primaryName},scope.row.${data.primaryName})"
+                                   plain size="mini">删除
+                        </el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+        </el-row>
+        <!-- 分页bar -->
+        <el-row class="pagingBar">
+            <el-pagination
+                    @size-change="handleSizeChange"
+                    @current-change="handleCurrentChange"
+                    :page-sizes="[10, 20, 30, 40]"
+                    :page-size="queryObj.size"
+                    layout="total, sizes, prev, pager, next, jumper"
+                    :total="total">
+            </el-pagination>
+        </el-row>
+    </div>
+</template>
+
+<script>
+    import {get${data.className}One, save${data.className}, update${data.className}, del${data.className}, get${data.className}Page} from '@/api/${vue}/'
+
+    export default {
+        name: 'UmsAdmin',
+        data() {
+            return {
+                timeRanger: null,
+                queryObj: {
+                    current: 1,
+                    size: 10,
+                    startTime: null,
+                    endTime: null,
+#foreach ($column in $data.columns)
+#if($column.query)
+                    $column.columnName: null,
+#end
+#end
+                },
+                formObj: {
+#foreach ($column in $data.columns)
+#if($column.insert)
+                    $column.columnName: null,
+#end
+#end
+                },
+                addRules: {
+#foreach ($column in $data.columns)
+#if($column.insert)
+                    $column.columnName: [
+                        {required: true, message: '请输入$column.columnComment', trigger: 'blur'}
+                    ],
+#end
+#end
+                },
+                total: 0,
+                tableData: [],
+                handlerDialog: false,
+                handlerDialogTitle: '',
+                handlerDialogSave: false,
+                // 当前操作id
+                rowId: null,
+                handlerDialogDetail: false,
+                detailObj: {
+#foreach ($column in $data.columns)
+                    $column.columnName: null,
+#end
+                }
+            }
+        },
+        created() {
+            this.search()
+        },
+        watch: {
+            // 监听时间变化
+            timeRanger: function (newVal, Old) {
+                if (newVal === null) {
+                    this.queryObj.startTime = null
+                    this.queryObj.endTime = null
+                } else {
+                    this.queryObj.startTime = newVal[0]
+                    this.queryObj.endTime = newVal[1] + 86399000
+                }
+            }
+        },
+        methods: {
+            page() {
+                get${data.className}Page(this.queryObj).then(response => {
+                    this.tableData = response.data.records
+                    this.total = response.data.total
+                })
+            },
+            handleSizeChange(size) {
+                this.queryObj.size = size
+                this.queryObj.current = 1
+                this.page()
+            },
+            handleCurrentChange(current) {
+                this.queryObj.current = current
+                this.page()
+            },
+            search() {
+                this.queryObj.current = 1
+                this.page()
+            },
+            addHandler() {
+                this.handlerDialogTitle = '添加类型'
+                this.handlerDialog = true
+                this.handlerDialogSave = true
+            },
+            submitForm(formName) {
+                if (this.handlerDialogSave) {
+                    this.saveForm(formName)
+                } else {
+                    this.updateForm(formName)
+                }
+            },
+            #set( $left = "[" )
+            #set( $right = "]" )saveForm(formName) {
+                this.$refs${left}formName${right}.validate((valid) =>{
+                    if (valid) {
+                        save${data.className}(this.formObj).then(response => {
+                            // 提示信息
+                            this.$message({
+                                message: '添加成功！',
+                                type: 'success'
+                            })
+                            // 关闭dialog
+                            this.handlerDialog = false
+                            // 清空对象信息
+                            Object.keys(this.formObj).forEach(key => {
+                                this.formObj[key] = null
+                            })
+                            // 刷新数据
+                            this.page()
+                        })
+                    } else {
+                        return false
+                    }
+                })
+            },
+            updateForm(formName) {
+                this.$refs${left}formName${right}.validate((valid) =>{
+                    if (valid) {
+                        update${data.className}(this.formObj,this.rowId).then(response => {
+                            // 提示信息
+                            this.$message({
+                                message: '修改成功！',
+                                type: 'success'
+                            })
+                            // 关闭dialog
+                            this.handlerDialog = false
+                            // 清空对象信息
+                            Object.keys(this.formObj).forEach(key => {
+                                this.formObj[key] = null
+                            })
+                            // 刷新数据
+                            this.page()
+                        })
+                    } else {
+                        return false
+                    }
+                })
+            },
+            updateHandler(id) {
+                this.rowId = id
+
+                this.handlerDialogTitle = '修改类型'
+                this.handlerDialog = true
+                this.handlerDialogSave = false
+
+                get${data.className}One(id).then(response => {
+                    this.formObj = response.data
+                })
+            },
+            deleteHandler(id, name) {
+                this.$confirm('此操作将永久删除【' + name + '】,是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    del${data.className}(id).then(response => {
+                        this.$message({
+                            type: 'success',
+                            message: '删除成功!'
+                        })
+                        //刷新数据
+                        this.page()
+                    })
+                })
+            },
+            handleClosed() {
+                Object.keys(this.formObj).forEach(key => {
+                    this.formObj[key] = null
+                })
+                this.fileList = []
+            },
+            handleDetailClosed() {
+                Object.keys(this.detailObj).forEach(key => {
+                    this.detailObj[key] = null
+                })
+            },
+            detailHandler(id) {
+                get${data.className}One(id).then(response => {
+                    this.detailObj = response.data
+                    this.handlerDialogDetail = true
+                })
+            }
+        }
+    }
+</script>
+
+<style scoped>
+
+</style>

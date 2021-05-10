@@ -1,0 +1,38 @@
+package ${entityPackage};
+
+import com.baomidou.mybatisplus.annotation.*;
+import lombok.Data;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.lang.Integer;
+
+/**
+ * ${config.desc}实体
+ *
+ * @author ${config.author}
+ * @since ${Date}
+ */
+@Data
+@TableName("${config.table}")
+public class ${entity} implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+#foreach ($column in $data.columns)
+    /**
+     * $column.columnComment
+     */
+#if($column.columnKey == "PRI")
+    @TableId(value = "`$column.column`", type = $column.primaryType)
+#else
+#if($column.fill)
+    @TableField(value = "`$column.column`", fill = $column.fillType)
+#else
+    @TableField("`$column.column`")
+#end
+#end
+    private $column.javaType $column.columnName;
+#end
+
+}

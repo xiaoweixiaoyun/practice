@@ -1,0 +1,35 @@
+package ${pageAOPackage};
+
+import com.baomidou.mybatisplus.annotation.TableField;
+import xyz.chaobei.common.domain.BaseModel;
+import io.swagger.annotations.ApiModelProperty;
+
+import lombok.Getter;
+import lombok.Setter;
+import java.io.Serializable;
+import java.util.Date;
+import java.lang.Integer;
+
+/**
+ * ${config.desc}AO分页查询对象
+ *
+ * @author ${config.author}
+ * @since ${Date}
+ */
+@Getter
+@Setter
+public class ${pageAO} extends BaseModel {
+
+#foreach ($column in $data.columns)
+#if($column.query)
+
+    /**
+     * $column.columnComment
+     */
+    @ApiModelProperty("$column.columnComment")
+    @TableField("`$column.column`")
+    private $column.javaType $column.columnName;
+#end
+#end
+
+}

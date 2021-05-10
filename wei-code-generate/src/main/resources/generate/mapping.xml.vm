@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="${mapperImport}">
+
+    <resultMap type="${entityImport}" id="${data.className}Map">
+#foreach ($column in $data.columns)
+    #if($column.columnKey == "PRI")
+    <id property="${column.columnName}" column="${column.column}"></id>
+    #else
+<result property="${column.columnName}" column="${column.column}"/>
+    #end
+#end
+</resultMap>
+
+    <sql id="base">
+        #foreach ($col in $data.columns)`$col.column`#if($foreach.hasNext),#end#end
+
+    </sql>
+
+</mapper>

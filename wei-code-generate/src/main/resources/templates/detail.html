@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>简单REST风格代码生成</title>
+    <link rel="stylesheet" href="/static/index.css">
+</head>
+<body>
+
+<input type="hidden" id="name" th:value="${name}">
+
+<div id="app">
+    <el-container>
+        <el-header>
+            <h3 th:text="${name}"></h3>
+        </el-header>
+        <el-main>
+            <el-table v-loading="loading" :data="tableData" style="width: 100%">
+
+                <el-table-column prop="column" label="字段"></el-table-column>
+
+                <el-table-column prop="columnKey" label="主键">
+                    <template slot-scope="scope">
+                        <span>{{scope.row.columnKey}}</span>
+                        <el-select v-if="scope.row.columnKey === 'PRI'" size="mini" v-model="scope.row.primaryType">
+                            <el-option :value="'IdType.INPUT'" :label="'INPUT'"></el-option>
+                            <el-option :value="'IdType.AUTO'" :label="'AUTO'"></el-option>
+                            <el-option :value="'IdType.ASSIGN_ID'" :label="'ASSIGN_ID'"></el-option>
+                            <el-option :value="'IdType.ASSIGN_UUID'" :label="'ASSIGN_UUID'"></el-option>
+                        </el-select>
+                    </template>
+                </el-table-column>
+
+                <el-table-column
+                        prop="dataType"
+                        label="类型"
+                        width="180">
+                </el-table-column>
+
+                <el-table-column prop="isNullable" label="允许为空" width="100"></el-table-column>
+
+                <el-table-column prop="columnComment" label="备注" width="150"></el-table-column>
+
+                <el-table-column label="PageAO" width="150">
+                    <template slot-scope="scope">
+                        <el-switch v-model="scope.row.query" active-color="#13ce66" inactive-color="#eee"></el-switch>
+                    </template>
+                </el-table-column>
+
+                <el-table-column label="Ins/UpdAO">
+                    <template slot-scope="scope">
+                        <el-switch v-model="scope.row.insert" active-color="#13ce66" inactive-color="#eee"></el-switch>
+
+                        <el-select v-if="scope.row.insert" size="mini" v-model="scope.row.insertType" placeholder="请选择">
+                            <el-option :value="null" :label="'不做校验'"></el-option>
+                            <el-option :value="'@NotNull'" :label="'@NotNull'"></el-option>
+                            <el-option :value="'@NotBlank'" :label="'@NotBlank'"></el-option>
+                            <el-option :value="'@NotEmpty'" :label="'@NotEmpty'"></el-option>
+                        </el-select>
+
+                    </template>
+                </el-table-column>
+
+                <el-table-column label="FieldFill">
+                    <template slot-scope="scope">
+                        <el-switch v-model="scope.row.fill" active-color="#13ce66" inactive-color="#eee"></el-switch>
+
+                        <el-select v-if="scope.row.fill" size="mini" v-model="scope.row.fillType" placeholder="请选择">
+                            <el-option :value="'FieldFill.INSERT'" :label="'INSERT'"></el-option>
+                            <el-option :value="'FieldFill.UPDATE'" :label="'UPDATE'"></el-option>
+                            <el-option :value="'FieldFill.INSERT_UPDATE'" :label="'INSERT_UPDATE'"></el-option>
+                        </el-select>
+                    </template>
+                </el-table-column>
+            </el-table>
+        </el-main>
+
+        <el-footer>
+            <el-form :inline="true" :model="generateObj" ref="defaultForm" class="demo-form-inline" :rules="rules">
+
+                <el-form-item label="生成路径" prop="filePath">
+                    <el-input v-model="generateObj.filePath" placeholder="E:\test"></el-input>
+                </el-form-item>
+
+                <el-form-item label="自定义包" prop="packages">
+                    <el-input v-model="generateObj.packages" placeholder="org.springframework"></el-input>
+                </el-form-item>
+
+                <el-form-item label="作者信息" prop="author">
+                    <el-input v-model="generateObj.author" placeholder="admin"></el-input>
+                </el-form-item>
+
+                <el-form-item label="描述信息" prop="desc">
+                    <el-input v-model="generateObj.desc" placeholder="例如：系统管理"></el-input>
+                </el-form-item>
+
+                <el-form-item>
+                    <el-button type="primary" @click="onSubmit('defaultForm')">一键生成</el-button>
+                </el-form-item>
+            </el-form>
+        </el-footer>
+
+    </el-container>
+</div>
+
+</body>
+
+<script src="/static/vue.js"></script>
+<script src="/static/index.js"></script>
+<script src="/static/axios.min.js"></script>
+<script src="/static/jquery-3.5.1.min.js"></script>
+
+<script>
+    let table = $("#name").val();
+
+    let app = new Vue({
+        el: '#app',
+        data: {
+            tableData: [],
+            insert: true,
+            loading: true,
+            generateObj: {
+                table: table,
+                author: 'xiaowei',
+                desc: '',
+                packages: 'com.code',
+                filePath: 'D:\\generate',
+                columns: null,
+            },
+            rules: {
+                author: [
+                    {required: true, message: '请填写作者信息', trigger: 'blur'}
+                ],
+                desc: [
+                    {required: true, message: '请填写描述信息', trigger: 'blur'}
+                ],
+                packages: [
+                    {required: true, message: '请填写自定义包信息', trigger: 'blur'}
+                ],
+                filePath: [
+                    {required: true, message: '请填写文件生成路径', trigger: 'blur'}
+                ],
+            }
+        },
+        created: function () {
+            let this_ = this;
+            axios.get('/api/detail/' + table, {params: this.pageObj})
+                .then(function (response) {
+                    let result = response.data.data;
+                    this_.loading = false;
+                    result.forEach(item => {
+
+                        if (item.columnKey === 'PRI') {
+                            item.primaryType = 'IdType.AUTO';
+                        }
+
+                        item.insert = false;
+                        item.insertType = null;
+                        item.query = false;
+                        item.fill = false;
+                        item.fillType = 'FieldFill.INSERT';
+                    })
+                    this_.tableData = result;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        },
+        methods: {
+            onSubmit: function (ref) {
+                let this_ = this;
+                this.$refs[ref].validate((valid) => {
+                    if (valid) {
+                        this.loading = false;
+                        this.generateObj.columns = this.tableData;
+
+                        axios.post('/api/generate', this.generateObj)
+                            .then(function (response) {
+                                this_.loading = false;
+                                this_.$message({
+                                    message: response.data.message,
+                                    type: 'success'
+                                });
+                            })
+                            .catch(function (error) {
+                                this_.loading = false;
+                                console.log(error);
+                                this_.$message.error("系统异常，请查看异常信息");
+                            });
+                    } else {
+                        console.log('error submit!!');
+                        return false;
+                    }
+                });
+            }
+        }
+    })
+</script>
+</html>
