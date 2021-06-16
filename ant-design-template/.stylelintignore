@@ -1,0 +1,9 @@
+# 测试和打包目录
+/test
+/dist
+/node_modules
+/src/plugins
+
+# 其他类型文件
+.tsx
+.ts

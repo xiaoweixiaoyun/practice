@@ -1,0 +1,2 @@
+[0311/095132.020:ERROR:registration_protocol_win.cc(63)] BuildSecurityDescriptor: 指定的网络提供程序名称无效。 (0x4B4)
+[0311/095133.257:ERROR:registration_protocol_win.cc(130)] TransactNamedPipe: 管道已结束。 (0x6D)
