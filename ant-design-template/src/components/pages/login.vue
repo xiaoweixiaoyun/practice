@@ -51,8 +51,8 @@ export default defineComponent({
     const formRef = ref();
     const router = useRouter();
     const formState: UnwrapRef<FormState> = reactive({
-      userCode: '',
-      password: ''
+      userCode: 'admin',
+      password: '123456'
     });
     const validateUserCode = async (_rule: RuleObject, value: string) => {
       if (value === '') {

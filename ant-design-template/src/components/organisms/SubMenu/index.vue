@@ -60,18 +60,23 @@ export default {
     };
     watch(props, newProps => {
       collapsedVal.value = newProps.collapsed;
+      if (!collapsedVal.value) {
+        openKeys.value = [];
+      }
     });
 
     watch(
       () => route.matched,
       () => {
-        openKeys.value = [];
-        const openKeysArr = proxy.$router.currentRoute.value.path.split('/');
-        openKeysArr.shift();
-        openKeysArr[0] = '/' + openKeysArr[0];
-        openKeysArr.forEach((item: any) => {
-          openKeys.value.unshift(item);
-        });
+        if (collapsedVal.value) {
+          openKeys.value = [];
+          const openKeysArr = proxy.$router.currentRoute.value.path.split('/');
+          openKeysArr.shift();
+          openKeysArr[0] = '/' + openKeysArr[0];
+          openKeysArr.forEach((item: any) => {
+            openKeys.value.unshift(item);
+          });
+        }
       }
     );
 
