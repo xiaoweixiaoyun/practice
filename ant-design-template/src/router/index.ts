@@ -49,6 +49,18 @@ const routes: Array<RouteRecordRaw> = [
             name: '权限控制指令',
             component: () => import('@/components/pages/MyDirectives/Permission/index.vue'),
             meta: { index: 4, title: '权限控制指令', icon: '' }
+          },
+          {
+            path: '/my-directives/copy',
+            name: '文本内容复制指令',
+            component: () => import('@/components/pages/MyDirectives/Copy/index.vue'),
+            meta: { index: 5, title: '文本内容复制指令', icon: '' }
+          },
+          {
+            path: '/my-directives/resize',
+            name: '响应缩放指令',
+            component: () => import('@/components/pages/MyDirectives/Resize/index.vue'),
+            meta: { index: 6, title: '响应缩放指令', icon: '' }
           }
         ]
       }
@@ -57,7 +69,7 @@ const routes: Array<RouteRecordRaw> = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory('/my-app/'),
   routes
 });
 

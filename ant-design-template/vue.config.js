@@ -1,7 +1,7 @@
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const path = require('path');
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production' ? '/my-app/' : '/', //my-app：项目名
+  publicPath: process.env.NODE_ENV === 'production' ? '/my-app/' : '/',
   devServer: {
     open: true,
     host: '0.0.0.0',
