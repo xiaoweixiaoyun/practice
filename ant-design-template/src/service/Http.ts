@@ -10,7 +10,8 @@ export class HttpService {
   }
 
   /**
-   * get请求
+   * get请求.
+   * 如果服务端将参数作为java对象来封装接受
    * @param params  参数
    * @param jwt   是否token校验
    * @param url     接口url
@@ -20,6 +21,28 @@ export class HttpService {
       this.axios
         .get(url, {
           data: params,
+          headers: { isJwt: jwt }
+        })
+        .then((res: any) => {
+          this.resultHandle(res, resolve);
+        })
+        .catch((err: any) => {
+          reject(err.message);
+        });
+    });
+  }
+  /**
+   * get请求
+   * 如果服务端将参数作为url参数来接受
+   * @param params  参数
+   * @param jwt   是否token校验
+   * @param url     接口url
+   */
+  public getStr(url: string, params: object, jwt = false) {
+    return new Promise((resolve, reject) => {
+      this.axios
+        .get(url, {
+          params: params,
           headers: { isJwt: jwt }
         })
         .then((res: any) => {

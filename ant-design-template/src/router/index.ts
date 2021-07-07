@@ -51,12 +51,6 @@ const routes: Array<RouteRecordRaw> = [
             meta: { index: 4, title: '权限控制指令', icon: '' }
           }
         ]
-      },
-      {
-        path: '/test',
-        name: '测试',
-        component: () => import('@/components/pages/MyDemo/index.vue'),
-        meta: { index: 5, title: '测试', icon: 'fa fa-free-code-camp' }
       }
     ]
   }
