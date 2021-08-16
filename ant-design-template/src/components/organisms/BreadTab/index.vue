@@ -84,8 +84,6 @@ export default {
       } else if (counter !== 0) {
         counter = 0;
         tabNavList.style.transform = 'translateX(' + '0' + 'px)';
-      } else {
-        console.log('不能在滑动了！');
       }
     }
     function tabsNext() {
@@ -96,8 +94,6 @@ export default {
       if (tabNavW < tabNavListW && counter + tabNavW - 10 < tabNavListW) {
         counter = parseInt(counter) + parseInt(tabNavW) - 10;
         tabNavList.style.transform = 'translateX(' + '-' + counter + 'px)';
-      } else {
-        console.log('不能在滑动了！');
       }
     }
     function closeAll() {

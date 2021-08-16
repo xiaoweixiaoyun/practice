@@ -1,6 +1,6 @@
 <template>
   <div class="app-wrapper">
-    <div :style="{ width: collapsed ? '260px' : '80px' }" class="side-container unfolded">
+    <div :style="{ width: collapsed ? '220px' : '80px' }" class="side-container unfolded">
       <div class="logo">
         <a href="/">
           <img :src="imgSrc" alt="我的组件库" />
@@ -8,7 +8,7 @@
       </div>
       <SubMenu :collapsed="collapsed" />
     </div>
-    <div class="main-container normal" :style="{ width: collapsed ? 'calc(100% - 260px)' : 'calc(100% - 80px)' }">
+    <div class="main-container normal" :style="{ width: collapsed ? 'calc(100% - 220px)' : 'calc(100% - 80px)' }">
       <div class="main-header">
         <HeaderBar @change-collapsed="changeCollapsed" />
         <BreadTab />
@@ -60,7 +60,7 @@ export default {
   overflow: hidden;
   .side-container {
     height: 100vh;
-    width: 260px;
+    width: 220px;
     float: left;
     transition: width 0.3s;
     background-color: #263238;
