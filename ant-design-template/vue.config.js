@@ -1,7 +1,8 @@
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const path = require('path');
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production' ? '/my-app/' : '/',
+  publicPath: process.env.NODE_ENV === 'production' ? './' : '/',
+  lintOnSave: process.env.NODE_ENV === 'development',
   devServer: {
     open: true,
     host: '0.0.0.0',
@@ -19,6 +20,12 @@ module.exports = {
         }
       }
     }
+  },
+  chainWebpack: config => {
+    config.plugin('html').tap(args => {
+      args[0].title = 'design vue';
+      return args;
+    });
   },
   configureWebpack: {
     plugins: [

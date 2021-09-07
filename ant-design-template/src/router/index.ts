@@ -69,7 +69,7 @@ const routes: Array<RouteRecordRaw> = [
 ];
 
 const router = createRouter({
-  history: createWebHistory('/my-app/'),
+  history: createWebHistory(),
   routes
 });
 
