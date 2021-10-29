@@ -11,12 +11,12 @@ module.exports = {
     hotOnly: false,
     proxy: {
       '/api': {
-        target: 'http://yapi.trechina.cn',
+        target: process.env.VUE_APP_URL,
         changeOrigin: true,
         secure: false,
         // ws: true, // proxy websockets
         pathRewrite: {
-          '^/api': '/mock/646/api'
+          '^/api': '/api'
         }
       }
     }

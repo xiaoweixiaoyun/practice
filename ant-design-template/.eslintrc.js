@@ -22,7 +22,7 @@ module.exports = {
     //禁止使用debugger 本番禁止 其他异常
     "no-debugger": process.env.NODE_ENV === "production" ? "error" : "warn",
     //每行最大数
-    "max-len": ["error", {code:200}],
+    "max-len": ["error", {code: 120}],
     //必须加分号
     'semi': ["error"],
     // 缩进风格2

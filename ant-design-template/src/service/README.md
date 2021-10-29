@@ -9,6 +9,7 @@
 * example：示例文件夹
 * Api.ts：API管理文件
 * ApiImpl.ts：API实现
+* Download.ts：文件流下载（参数1：地址 参数2：文件流）
 * README.md：介绍
 
 ### 1.2 具体文件详解
@@ -16,7 +17,8 @@
 在service创建模块文件夹例如：user模块、notice模块……
 #### 1.2.1 Http.ts
 提供五种请求方式：
-- get
+- get：服务端将参数作为java对象来封装接受
+- getStr：服务端将参数作为url参数来接受
 - post
 - delete：如果服务端将参数作为java对象来封装接受
 - deleteStr：如果服务端将参数作为url参数来接受
@@ -47,11 +49,11 @@
 
 ### 2.1 引入api
 
-`import { getTest, postTest } from '@/service/example/ApiImpl';`
+`import { getApi } from '@/service/example/ApiImpl';`
 
 ### 2.2 get请求
 ```javascript
-getTest()
+getApi()
 .then(function(res: any) {
 	console.log(res);
 })
@@ -60,19 +62,6 @@ getTest()
 });
 ```
 
-### 2.3 post请求
-```javascript
-postTest({
-	employeeCode: '2200167',
-	sysKey: '62b2e551-2864-4da5-8575-06486c0e9fb1'
-})
-.then(function(res: any) {
-	console.log(res);
-})
-.catch(function(error: any) {
-	console.log(error);
-});
-```
 
 ## 3 跨域
 
@@ -101,31 +90,17 @@ module.exports = {
 ```
 
 ### 3.2 测试环境和本番环境
+* .env.development：开发环境
 * .env.test：测试环境  
 * .env.prod：本番环境  
 * NODE_ENV：环境划分，不建议修改  
 * VUE_APP_URL：访问域名配置  
- 
-打包命令：
-```
-npm run test //测试环境
-npm run prod //本番环境
-```
 
-## 4 访问JSON文件 vue.config.js
-## 4.1 自动创建api接口
-```javascript
-module.exports = {
-  devServer: {
-    before(app) {
-      app.get('/json', (req, res) => {
-        res.json({
-          cd: '123',
-          name: 'test'
-        });
-      });
-    }
-  }
-};
+文件定义变量必须使用`VUE_APP_`开头
 
+##  问题合集
+### post遇到form提交方式
+```
+import qs from 'qs';
+export const apiLogin = (p: any) => new HttpService().post(url, qs.stringify(p) as any);
 ```

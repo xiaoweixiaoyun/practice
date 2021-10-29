@@ -1,5 +1,13 @@
 <template>
-  <a-menu :selected-keys="[$route.path]" mode="inline" theme="dark" :open-keys="openKeys" :inline-collapsed="!collapsedVal" @click="handelClickLink" @openChange="onOpenChange">
+  <a-menu
+    :selected-keys="[$route.path]"
+    mode="inline"
+    theme="dark"
+    :open-keys="openKeys"
+    :inline-collapsed="!collapsedVal"
+    @click="handelClickLink"
+    @openChange="onOpenChange"
+  >
     <template v-for="item in menu">
       <!-- menu -->
       <a-menu-item v-if="hasOneChildren(item.children)" :key="item.path">

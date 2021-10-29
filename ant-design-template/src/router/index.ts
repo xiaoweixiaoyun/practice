@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -27,7 +27,13 @@ const routes: Array<RouteRecordRaw> = [
             path: '/my-conponents/loading',
             name: '全局等待组件',
             component: () => import('@/components/pages/MyConponents/Loading/index.vue'),
-            meta: { index: 2, title: '全局等待组件', icon: '' }
+            meta: { index: 21, title: '全局等待组件', icon: '' }
+          },
+          {
+            path: '/my-conponents/ImportExcle',
+            name: '自定义Excel上传组件',
+            component: () => import('@/components/pages/MyConponents/ImportExcle/index.vue'),
+            meta: { index: 21, title: '自定义Excel上传组件', icon: '' }
           }
         ]
       },
@@ -42,25 +48,25 @@ const routes: Array<RouteRecordRaw> = [
             path: '/my-directives/show-tips',
             name: '文本显示省略号指令',
             component: () => import('@/components/pages/MyDirectives/ShowTips/index.vue'),
-            meta: { index: 3, title: '文本显示省略号指令', icon: '' }
+            meta: { index: 31, title: '文本显示省略号指令', icon: '' }
           },
           {
             path: '/my-directives/permission',
             name: '权限控制指令',
             component: () => import('@/components/pages/MyDirectives/Permission/index.vue'),
-            meta: { index: 4, title: '权限控制指令', icon: '' }
+            meta: { index: 32, title: '权限控制指令', icon: '' }
           },
           {
             path: '/my-directives/copy',
             name: '文本内容复制指令',
             component: () => import('@/components/pages/MyDirectives/Copy/index.vue'),
-            meta: { index: 5, title: '文本内容复制指令', icon: '' }
+            meta: { index: 33, title: '文本内容复制指令', icon: '' }
           },
           {
             path: '/my-directives/resize',
             name: '响应缩放指令',
             component: () => import('@/components/pages/MyDirectives/Resize/index.vue'),
-            meta: { index: 6, title: '响应缩放指令', icon: '' }
+            meta: { index: 34, title: '响应缩放指令', icon: '' }
           }
         ]
       }
@@ -69,7 +75,7 @@ const routes: Array<RouteRecordRaw> = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes
 });
 

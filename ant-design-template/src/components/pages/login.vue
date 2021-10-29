@@ -5,7 +5,14 @@
         <img :src="Logo" alt="icon" />
         <p>账 号 登 录</p>
       </div>
-      <a-form ref="formRef" name="custom-validation" :model="formState" :rules="rules" v-bind="layout" @finish="handleFinish">
+      <a-form
+        ref="formRef"
+        name="custom-validation"
+        :model="formState"
+        :rules="rules"
+        v-bind="layout"
+        @finish="handleFinish"
+      >
         <a-form-item required has-feedback label="" name="userCode">
           <a-input v-model:value="formState.userCode" type="userCode" autocomplete="off">
             <template #prefix>

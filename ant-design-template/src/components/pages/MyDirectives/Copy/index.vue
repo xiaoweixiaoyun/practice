@@ -23,7 +23,8 @@
         unmounted(unbind): 当指令卸载后调用，仅调用一次。
         <br />
         <br />
-        使用该指令可以复制元素的文本内容（指令支持单击复制 v-copy、双击复制 v-copy.dblclick、点击icon复制 v-copy.icon 三种模式），不传参数时，默认使用单击复制。
+        使用该指令可以复制元素的文本内容（指令支持单击复制 v-copy、双击复制 v-copy.dblclick、点击icon复制 v-copy.icon
+        三种模式），不传参数时，默认使用单击复制。
         <br />
         使用方法：v-copy、v-copy.dblclick、v-copy.icon
       </p>
