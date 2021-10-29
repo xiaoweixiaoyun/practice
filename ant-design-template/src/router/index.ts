@@ -20,7 +20,7 @@ const routes: Array<RouteRecordRaw> = [
         path: '/my-conponents',
         name: '我的组件库',
         component: () => import('@/components/pages/MyConponents/index.vue'),
-        redirect: '/my-conponents/loading',
+        redirect: '/loading',
         meta: { title: '我的组件库', icon: 'fa fa-cubes' },
         children: [
           {

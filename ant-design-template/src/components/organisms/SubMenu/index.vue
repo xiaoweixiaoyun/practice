@@ -2,7 +2,7 @@
   <a-menu
     :selected-keys="[$route.path]"
     mode="inline"
-    theme="dark"
+    :theme="theme"
     :open-keys="openKeys"
     :inline-collapsed="!collapsedVal"
     @click="handelClickLink"
@@ -47,7 +47,11 @@ import { useRoute } from 'vue-router';
 export default {
   name: 'SubMenu',
   props: {
-    collapsed: Boolean
+    collapsed: Boolean,
+    theme: {
+      type: Object,
+      default: 'dark'
+    }
   },
   setup(props: any) {
     const { proxy }: any = getCurrentInstance();

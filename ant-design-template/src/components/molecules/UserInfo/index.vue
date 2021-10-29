@@ -24,6 +24,7 @@
 </template>
 <script>
 import { CaretDownFilled, UserOutlined } from '@ant-design/icons-vue';
+import { useRouter } from 'vue-router';
 export default {
   name: 'Index',
   components: {
@@ -31,8 +32,9 @@ export default {
     CaretDownFilled
   },
   setup() {
+    const router = useRouter();
     const logout = () => {
-      window.location.href = '/login';
+      router.push("/login");
     };
     return { logout };
   }

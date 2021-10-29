@@ -1,12 +1,15 @@
 <template>
   <div class="app-wrapper">
-    <div :style="{ width: collapsed ? '220px' : '80px' }" class="side-container unfolded">
+    <div
+      :style="{ width: collapsed ? '220px' : '80px', background: theme === 'dark' ? '#263238' : '' }"
+      class="side-container unfolded"
+    >
       <div class="logo">
         <a href="/">
           <img :src="imgSrc" alt="我的组件库" />
         </a>
       </div>
-      <SubMenu :collapsed="collapsed" />
+      <SubMenu :collapsed="collapsed" :theme="theme" />
     </div>
     <div class="main-container normal" :style="{ width: collapsed ? 'calc(100% - 220px)' : 'calc(100% - 80px)' }">
       <div class="main-header">
@@ -40,6 +43,7 @@ export default {
   setup() {
     const imgSrc = ref(Logo);
     const collapsed = ref(true);
+    const theme = ref('dark');
     function changeCollapsed(val: boolean) {
       collapsed.value = val;
       imgSrc.value = val ? Logo : Logo2;
@@ -47,7 +51,8 @@ export default {
     return {
       imgSrc,
       collapsed,
-      changeCollapsed
+      changeCollapsed,
+      theme
     };
   }
 };
@@ -63,7 +68,7 @@ export default {
     width: 220px;
     float: left;
     transition: width 0.3s;
-    background-color: #263238;
+    box-shadow: 0 0 2px #c7c5c5 inset;
     overflow: hidden;
     &.unfolded {
       width: 100%;
