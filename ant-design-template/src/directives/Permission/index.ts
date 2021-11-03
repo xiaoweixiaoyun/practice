@@ -1,10 +1,10 @@
 export default {
   mounted(el: any, binding: any) {
     const { value } = binding;
-    const roles = ['usr:editor', 'home:delete', 'usr:insert'];
+    const roles = JSON.parse(localStorage.getItem('PERMISSIONS') as any) || [];
     if (value && value instanceof Array && value.length > 0) {
       const permissionRoles = value;
-      const hasPermission = roles.some(role => {
+      const hasPermission = roles.some((role: any) => {
         return permissionRoles.includes(role);
       });
       if (!hasPermission) {
