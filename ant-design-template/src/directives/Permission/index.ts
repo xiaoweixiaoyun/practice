@@ -1,7 +1,7 @@
 export default {
   mounted(el: any, binding: any) {
     const { value } = binding;
-    const roles = ['editor', 'admin'];
+    const roles = ['usr:editor', 'home:delete', 'usr:insert'];
     if (value && value instanceof Array && value.length > 0) {
       const permissionRoles = value;
       const hasPermission = roles.some(role => {
@@ -11,7 +11,7 @@ export default {
         el.parentNode && el.parentNode.removeChild(el);
       }
     } else {
-      throw new Error(`need roles! Like v-permission="['admin','editor']"`);
+      throw new Error(`need roles! Like v-permission="['usr:editor', 'user:delete']"`);
     }
   }
 };

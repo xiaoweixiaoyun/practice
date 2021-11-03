@@ -12,61 +12,61 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: '/home',
-        name: '首页',
+        name: 'Home',
         component: () => import('@/components/pages/Home/index.vue'),
-        meta: { index: 1, title: '首页', icon: 'fa fa-home' }
+        meta: { title: '首页', icon: 'fa fa-home'}
       },
       {
         path: '/my-conponents',
-        name: '我的组件库',
+        name: 'MyConponents',
         component: () => import('@/components/pages/MyConponents/index.vue'),
         redirect: '/loading',
-        meta: { title: '我的组件库', icon: 'fa fa-cubes' },
+        meta: { title: '我的组件库', icon: 'fa fa-cubes'},
         children: [
           {
             path: '/my-conponents/loading',
-            name: '全局等待组件',
+            name: 'Loading',
             component: () => import('@/components/pages/MyConponents/Loading/index.vue'),
-            meta: { index: 21, title: '全局等待组件', icon: '' }
+            meta: { title: '全局等待组件'}
           },
           {
-            path: '/my-conponents/ImportExcle',
-            name: '自定义Excel上传组件',
+            path: '/my-conponents/importExcle',
+            name: 'ImportExcle',
             component: () => import('@/components/pages/MyConponents/ImportExcle/index.vue'),
-            meta: { index: 21, title: '自定义Excel上传组件', icon: '' }
+            meta: { title: '自定义Excel上传组件'}
           }
         ]
       },
       {
         path: '/my-directives',
-        name: '我的指令库',
+        name: 'MyDirectives',
         component: () => import('@/components/pages/MyDirectives/index.vue'),
         redirect: '/my-directives/show-tips',
-        meta: { title: '我的指令库', icon: 'fa fa-code' },
+        meta: { title: '我的指令库', icon: 'fa fa-code'},
         children: [
           {
             path: '/my-directives/show-tips',
-            name: '文本显示省略号指令',
+            name: 'ShowTips',
             component: () => import('@/components/pages/MyDirectives/ShowTips/index.vue'),
-            meta: { index: 31, title: '文本显示省略号指令', icon: '' }
+            meta: { title: '文本显示省略号指令'}
           },
           {
             path: '/my-directives/permission',
-            name: '权限控制指令',
+            name: 'Permission',
             component: () => import('@/components/pages/MyDirectives/Permission/index.vue'),
-            meta: { index: 32, title: '权限控制指令', icon: '' }
+            meta: { title: '权限控制指令'}
           },
           {
             path: '/my-directives/copy',
-            name: '文本内容复制指令',
+            name: 'Copy',
             component: () => import('@/components/pages/MyDirectives/Copy/index.vue'),
-            meta: { index: 33, title: '文本内容复制指令', icon: '' }
+            meta: { title: '文本内容复制指令'}
           },
           {
             path: '/my-directives/resize',
-            name: '响应缩放指令',
+            name: 'Resize',
             component: () => import('@/components/pages/MyDirectives/Resize/index.vue'),
-            meta: { index: 34, title: '响应缩放指令', icon: '' }
+            meta: { title: '响应缩放指令'}
           }
         ]
       }

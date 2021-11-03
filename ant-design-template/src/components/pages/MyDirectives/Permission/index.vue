@@ -23,22 +23,17 @@
         unmounted(unbind): 当指令卸载后调用，仅调用一次。
         <br />
         <br />
-        权限控制返回默认admin、editor
-        <br />
-        使用方法：v-permission="['admin','editor']"
+        使用方法：v-permission="['usr:editor','usr:insert']"
       </p>
     </div>
     <br />
-    <a-button v-permission="['admin']" type="primary">
-      admin
-    </a-button>
-    <a-button v-permission="['editor']" type="primary" style="margin-left: 10px;">
+    <a-button v-permission="['usr:editor']" type="primary" style="margin-left: 10px;">
       editor
     </a-button>
-    <a-button v-permission="['update']" type="primary" style="margin-left: 10px;">
+    <a-button v-permission="['usr:update']" type="primary" style="margin-left: 10px;">
       update
     </a-button>
-    <a-button v-permission="['insert']" type="primary" style="margin-left: 10px;">
+    <a-button v-permission="['usr:insert']" type="primary" style="margin-left: 10px;">
       insert
     </a-button>
   </div>
