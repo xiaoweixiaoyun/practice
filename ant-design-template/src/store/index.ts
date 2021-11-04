@@ -1,7 +1,20 @@
 import { createStore } from 'vuex';
-export default createStore({
-  state: {},
-  mutations: {},
-  actions: {},
-  modules: {}
+import permission from './modules/permission';
+import user from './modules/user';
+import app from './modules/app';
+import getters from './getters';
+
+const store = createStore({
+  modules: {
+    app,
+    user,
+    permission
+  },
+  getters
 });
+
+export const setupStore = (app: any) => {
+  app.use(store);
+};
+
+export default store;

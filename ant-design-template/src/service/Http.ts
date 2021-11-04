@@ -168,7 +168,7 @@ export class HttpService {
    * @param resolve
    */
   public resultHandle(res: any, resolve: any) {
-    if (res.status > 0) {
+    if (res.code === 200) {
       resolve(res.data);
     } else {
       this.errorHandle(res);

@@ -20,9 +20,10 @@ export default {
 </script>
 <style lang="less" scoped>
 .github {
-  float: left;
   height: 100%;
-  padding: 5px 10px;
+  padding: 0 15px 0 0;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
 }
 </style>

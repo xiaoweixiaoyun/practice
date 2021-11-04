@@ -2,7 +2,7 @@
   <div class="login-wrapper" :style="'background-image:url(' + Background + ')'">
     <div class="form-box">
       <div class="form-title">
-        <img :src="Logo" alt="icon" />
+        <img :src="Logo" alt="icon" height="100" />
         <p>账 号 登 录</p>
       </div>
       <a-form
@@ -13,8 +13,8 @@
         v-bind="layout"
         @finish="handleFinish"
       >
-        <a-form-item required has-feedback label="" name="userCode">
-          <a-input v-model:value="formState.userCode" type="userCode" autocomplete="off">
+        <a-form-item required has-feedback label="" name="username">
+          <a-input v-model:value="formState.username" type="username" autocomplete="off">
             <template #prefix>
               <UserOutlined style="color: rgba(0, 0, 0, 0.25);" />
             </template>
@@ -39,7 +39,7 @@
 </template>
 <script lang="ts">
 interface FormState {
-  userCode: string;
+  username: string;
   password: string;
 }
 import Background from '@/assets/img/login-background.jpg';
@@ -48,6 +48,8 @@ import { RuleObject } from 'ant-design-vue/es/form/interface';
 import { defineComponent, reactive, ref, UnwrapRef } from 'vue';
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
 import { useRouter } from 'vue-router';
+import { useStore } from 'vuex';
+import { message } from 'ant-design-vue'; 
 export default defineComponent({
   name: 'Login',
   components: {
@@ -57,13 +59,14 @@ export default defineComponent({
   setup() {
     const formRef = ref();
     const router = useRouter();
+    const store = useStore();
     const formState: UnwrapRef<FormState> = reactive({
-      userCode: 'admin',
+      username: 'admin',
       password: '123456'
     });
-    const validateUserCode = async (_rule: RuleObject, value: string) => {
+    const validateUsername = async (_rule: RuleObject, value: string) => {
       if (value === '') {
-        return Promise.reject('Please input the userCode');
+        return Promise.reject('Please input the username');
       }
       return Promise.resolve();
     };
@@ -74,7 +77,7 @@ export default defineComponent({
       return Promise.resolve();
     };
     const rules = {
-      userCode: [{ validator: validateUserCode, trigger: 'change' }],
+      username: [{ validator: validateUsername, trigger: 'change' }],
       password: [{ validator: validatePassword, trigger: 'change' }]
     };
     const layout = {
@@ -82,7 +85,14 @@ export default defineComponent({
       wrapperCol: { span: 24 }
     };
     const handleFinish = () => {
-      router.push('/home');
+      store
+        .dispatch('user/login', formState)
+        .then(() => {
+          router.push('/home');
+        })
+        .catch(() => {
+          message.warn('用户名或密码错误，请重新输入');
+        });
     };
     return {
       Logo,

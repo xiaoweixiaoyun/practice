@@ -1,7 +1,8 @@
 import { createApp } from 'vue';
 import App from './App.vue';
-import { router } from './router';
-import store from './store';
+import { setupRouter } from './router';
+import './router/permission';
+import { setupStore } from './store/index';
 import Antd from '@/plugins/AntDesign';
 import 'font-awesome/css/font-awesome.min.css';
 
@@ -11,13 +12,13 @@ import Permission from '@/directives/Permission/index';
 import Copy from '@/directives/Copy/index';
 import Resize from '@/directives/Resize/index';
 
-createApp(App)
-  .use(store)
-  .use(router)
-  .use(Antd)
-  .use(loading)
-  .directive('ShowTips', ShowTips as any)
-  .directive('Permission', Permission as any)
-  .directive('Copy', Copy as any)
-  .directive('Resize', Resize as any)
-  .mount('#app');
+const app = createApp(App);
+setupRouter(app);
+setupStore(app);
+app.use(Antd);
+app.use(loading);
+app.directive('ShowTips', ShowTips as any);
+app.directive('Permission', Permission as any);
+app.directive('Copy', Copy as any);
+app.directive('Resize', Resize as any);
+app.mount('#app');

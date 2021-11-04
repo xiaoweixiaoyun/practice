@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="height: 100%;">
     <a-config-provider :locale="locale">
       <div id="app">
         <router-view />
@@ -24,5 +24,6 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100%;
 }
 </style>

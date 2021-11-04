@@ -4,6 +4,7 @@ module.exports = {
   publicPath: process.env.NODE_ENV === 'production' ? './' : '/',
   lintOnSave: process.env.NODE_ENV === 'development',
   devServer: {
+    before: require('./mock/index.ts'),
     open: true,
     host: '0.0.0.0',
     port: 4455,

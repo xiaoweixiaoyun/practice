@@ -54,11 +54,9 @@ export class Interceptors {
         } else if (res.data && res.data.token) {
           localStorage.setItem('id_token', res.data.token);
         }
-
         if (res.status === 200) {
           return Promise.resolve(res.data);
         }
-
         this.errorHandle(res);
         return Promise.reject(res.data);
       },

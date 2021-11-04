@@ -1,0 +1,8 @@
+{
+  "code": 200,
+  "data": {
+    "roles": ["admin"],
+    "name": "Admin"
+  },
+  "message": "ok"
+}

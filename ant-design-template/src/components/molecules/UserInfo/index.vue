@@ -8,11 +8,6 @@
       <template #overlay>
         <a-menu>
           <a-menu-item>
-            <a href="javascript:;">
-              个人中心
-            </a>
-          </a-menu-item>
-          <a-menu-item>
             <a href="javascript:;" @click.prevent="logout">
               退出登录
             </a>
@@ -25,6 +20,7 @@
 <script>
 import { CaretDownFilled, UserOutlined } from '@ant-design/icons-vue';
 import { useRouter } from 'vue-router';
+import { useStore } from 'vuex';
 export default {
   name: 'Index',
   components: {
@@ -33,8 +29,11 @@ export default {
   },
   setup() {
     const router = useRouter();
+    const store = useStore();
     const logout = () => {
-      router.push("/login");
+      store.dispatch('user/logout').then(() => {
+        router.push({ name: 'Login' });
+      });
     };
     return { logout };
   }
@@ -42,15 +41,18 @@ export default {
 </script>
 <style lang="less" scoped>
 .userInfo {
-  float: right;
   height: 100%;
-  padding: 5px 0 5px 10px;
-  border-left: 1px solid rgb(216, 216, 216);
+  padding-left: 10px;
+  border-left: 1px solid rgb(228, 226, 226);
   display: flex;
   align-items: center;
   cursor: pointer;
   i {
     color: rgb(177, 176, 175);
   }
+}
+.ant-dropdown-trigger {
+  display: flex;
+  align-items: center;
 }
 </style>
