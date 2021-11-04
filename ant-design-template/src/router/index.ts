@@ -14,26 +14,26 @@ const routes: Array<RouteRecordRaw> = [
         path: '/home',
         name: 'Home',
         component: () => import('@/components/pages/Home/index.vue'),
-        meta: { title: '首页', icon: 'fa fa-home'}
+        meta: { title: '首页', icon: 'fa fa-home', roles: ['user', 'admin'] }
       },
       {
         path: '/my-conponents',
         name: 'MyConponents',
         component: () => import('@/components/pages/MyConponents/index.vue'),
         redirect: '/loading',
-        meta: { title: '我的组件库', icon: 'fa fa-cubes'},
+        meta: { title: '我的组件库', icon: 'fa fa-cubes', roles: ['admin'] },
         children: [
           {
             path: '/my-conponents/loading',
             name: 'Loading',
             component: () => import('@/components/pages/MyConponents/Loading/index.vue'),
-            meta: { title: '全局等待组件'}
+            meta: { title: '全局等待组件', roles: ['admin'] }
           },
           {
             path: '/my-conponents/importExcle',
             name: 'ImportExcle',
             component: () => import('@/components/pages/MyConponents/ImportExcle/index.vue'),
-            meta: { title: '自定义Excel上传组件'}
+            meta: { title: '自定义Excel上传组件', roles: ['admin'] }
           }
         ]
       },
@@ -42,31 +42,31 @@ const routes: Array<RouteRecordRaw> = [
         name: 'MyDirectives',
         component: () => import('@/components/pages/MyDirectives/index.vue'),
         redirect: '/my-directives/show-tips',
-        meta: { title: '我的指令库', icon: 'fa fa-code'},
+        meta: { title: '我的指令库', icon: 'fa fa-code', roles: ['admin'] },
         children: [
           {
             path: '/my-directives/show-tips',
             name: 'ShowTips',
             component: () => import('@/components/pages/MyDirectives/ShowTips/index.vue'),
-            meta: { title: '文本显示省略号指令'}
+            meta: { title: '文本显示省略号指令', roles: ['admin'] }
           },
           {
             path: '/my-directives/permission',
             name: 'Permission',
             component: () => import('@/components/pages/MyDirectives/Permission/index.vue'),
-            meta: { title: '权限控制指令'}
+            meta: { title: '权限控制指令', roles: ['admin'] }
           },
           {
             path: '/my-directives/copy',
             name: 'Copy',
             component: () => import('@/components/pages/MyDirectives/Copy/index.vue'),
-            meta: { title: '文本内容复制指令'}
+            meta: { title: '文本内容复制指令', roles: ['admin'] }
           },
           {
             path: '/my-directives/resize',
             name: 'Resize',
             component: () => import('@/components/pages/MyDirectives/Resize/index.vue'),
-            meta: { title: '响应缩放指令'}
+            meta: { title: '响应缩放指令', roles: ['admin'] }
           }
         ]
       }

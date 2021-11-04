@@ -36,6 +36,8 @@
     "./src/assets/img/images.d.ts"
 , "src/directives/Permission/index.js", "src/directives/ShowTips/index.js", "src/main.js"  ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "src/router",
+    "src/store"
   ]
 }
