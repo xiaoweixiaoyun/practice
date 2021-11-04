@@ -1,7 +1,9 @@
 import { createStore } from 'vuex';
-
+import permission from './permission';
 export default createStore({
-  state: {},
+  state: {
+    permission
+  },
   mutations: {},
   actions: {},
   modules: {}

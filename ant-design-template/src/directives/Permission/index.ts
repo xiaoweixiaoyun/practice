@@ -1,3 +1,4 @@
+
 export default {
   mounted(el: any, binding: any) {
     const { value } = binding;

@@ -23,6 +23,8 @@
         unmounted(unbind): 当指令卸载后调用，仅调用一次。
         <br />
         <br />
+        登录之后获取权限并存入：localStorage.setItem('PERMISSIONS', ['user:view', 'role:update', 'dept:add', 'role:add']);
+        <br />
         使用方法：v-permission="['usr:editor','usr:insert']"
       </p>
     </div>
