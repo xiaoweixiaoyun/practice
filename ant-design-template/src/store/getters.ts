@@ -1,5 +1,5 @@
 const getters = {
-  name: (state: any) => state.user.name,
+  tagsList: (state: any) => state.navTab.tagsList,
   roles: (state: any) => state.user.roles,
   permissionRoutes: (state: any) => state.permission.routes
 };

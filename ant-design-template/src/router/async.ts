@@ -2,8 +2,9 @@ import Layout from '@/components/pages/index.vue';
 export default [
   {
     path: '/',
+    name: '',
     component: Layout,
-    redirect: '/home',
+    redirect: 'home',
     children: [
       {
         path: 'home',
@@ -18,6 +19,7 @@ export default [
     name: 'MyConponents',
     component: Layout,
     meta: { title: '我的组件库', icon: 'fa fa-cubes', roles: ['admin'] },
+    redirect: 'loading',
     children: [
       {
         path: 'loading',

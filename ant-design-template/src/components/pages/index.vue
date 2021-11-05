@@ -87,7 +87,6 @@ export default {
     const store = useStore();
     const router = useRouter();
     const route = useRoute();
-    const name = ref(store.getters.name);
     const openKeys = ref([route.matched[0].name || '']);
     const selectedKeys = ref([route.name]);
     const collapsed = ref(false);
@@ -98,7 +97,6 @@ export default {
     // 获取权限路由
     const routes = computed(() => store.getters.permissionRoutes.filter(item => !item.hidden) || []);
     return {
-      name,
       openKeys,
       selectedKeys,
       collapsed,
