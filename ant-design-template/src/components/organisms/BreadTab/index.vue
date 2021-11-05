@@ -56,7 +56,7 @@ export default {
         tagsList.value.push({
           title: route.meta.title,
           path: route.fullPath,
-          name: route.matched[1].components.default.name
+          name: route.matched[0].components.default.name
         });
     }
     function isActive(path: any) {
