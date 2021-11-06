@@ -60,14 +60,14 @@
   </a-layout>
 </template>
 <script>
-import Logo from '@/components/organisms/Logo/index.vue';
-import SubMenu from '@/components/organisms/SubMenu/index.vue';
-import Collapse from '@/components/molecules/Collapse/index.vue';
-import Breadcrumb from '@/components/molecules/Breadcrumb/index.vue';
-import Enlarge from '@/components/molecules/Enlarge/index.vue';
-import Github from '@/components/molecules/Github/index.vue';
-import UserInfo from '@/components/molecules/UserInfo/index.vue';
-import BreadTab from '@/components/organisms/BreadTab/index.vue';
+import Logo from '@/components/layout/Logo/index.vue';
+import SubMenu from '@/components/layout/SubMenu/index.vue';
+import Collapse from '@/components/layout/Collapse/index.vue';
+import Breadcrumb from '@/components/layout/Breadcrumb/index.vue';
+import Enlarge from '@/components/layout/Enlarge/index.vue';
+import Github from '@/components/layout/Github/index.vue';
+import UserInfo from '@/components/layout/UserInfo/index.vue';
+import BreadTab from '@/components/layout/BreadTab/index.vue';
 import { computed, ref, watch } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { useStore } from 'vuex';

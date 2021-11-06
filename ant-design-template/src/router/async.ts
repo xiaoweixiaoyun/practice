@@ -1,4 +1,4 @@
-import Layout from '@/components/pages/index.vue';
+import Layout from '@/components/layout/index.vue';
 export default [
   {
     path: '/',

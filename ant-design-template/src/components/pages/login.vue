@@ -27,13 +27,18 @@
             </template>
           </a-input>
         </a-form-item>
-        <br />
         <a-form-item>
           <a-button type="primary" html-type="submit" block>
             登录
           </a-button>
         </a-form-item>
       </a-form>
+      <div class="foot-sub">
+        <span>{{ name }}后台管理</span>
+        <span class="foot-sub-r">
+          {{ version }}
+        </span>
+      </div>
     </div>
   </div>
 </template>
@@ -49,7 +54,7 @@ import { defineComponent, reactive, ref, UnwrapRef } from 'vue';
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
-import { message } from 'ant-design-vue'; 
+import { message } from 'ant-design-vue';
 export default defineComponent({
   name: 'Login',
   components: {
@@ -101,7 +106,9 @@ export default defineComponent({
       formRef,
       rules,
       layout,
-      handleFinish
+      handleFinish,
+      name: store.state.app.name,
+      version: store.state.app.version
     };
   }
 });
@@ -121,11 +128,18 @@ export default defineComponent({
     border-radius: 4px;
     box-shadow: 0 15px 30px 0 rgba(0, 0, 1, 0.1);
     .form-title {
-      margin: 0 auto 35px;
+      margin: 0 auto 20px;
       text-align: center;
       color: #707070;
       font-size: 18px;
       letter-spacing: 2px;
+    }
+  }
+  .foot-sub {
+    font-size: 14px;
+    color: rgb(194, 194, 194);
+    .foot-sub-r {
+      float: right;
     }
   }
 }

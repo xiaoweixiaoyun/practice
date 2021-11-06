@@ -1,6 +1,6 @@
 <template>
   <div class="logo">
-    <img src="@/assets/img/logo.png" />
+    <img :src="logo" />
     <span v-show="!collapsed">
       {{ name }}
     </span>
@@ -19,7 +19,7 @@ export default {
   setup() {
     const store = useStore();
     return {
-      logo: '@/assets/' + store.state.app.logo,
+      logo: require('@/assets/img/' + store.state.app.logo),
       name: store.state.app.name
     };
   }
