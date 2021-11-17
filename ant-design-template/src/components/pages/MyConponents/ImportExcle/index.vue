@@ -34,7 +34,7 @@ export default {
   },
   setup() {
     const importFun = (params: any) => {
-      console.log(params);
+      alert(params);
     };
     const { visibleImport, importShowFun, importCloseFun } = importEmit();
     return { importFun, visibleImport, importShowFun, importCloseFun };

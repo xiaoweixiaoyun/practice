@@ -39,10 +39,10 @@ export class Interceptors {
           }
         }
         return config;
-      },
-      (error: any) => {
-        console.log(error);
       }
+      // ,(error: any) => {
+      //   console.log(error);
+      // }
     );
 
     // 响应拦截器

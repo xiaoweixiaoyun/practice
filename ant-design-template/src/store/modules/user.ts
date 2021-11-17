@@ -1,10 +1,11 @@
 import { login, findInfo } from '@/service/login/ApiImpl';
 import { getToken, setToken, removeToken } from '@/utils/auth';
-
+import { resetRouter } from '@/router/index';
 const state = {
   token: getToken(),
   name: '',
-  roles: []
+  roles: [],
+  prrmissions: []
 };
 
 const mutations = {
@@ -16,6 +17,9 @@ const mutations = {
   },
   SET_ROLES: (state: any, roles: any) => {
     state.roles = roles;
+  },
+  SET_PRRMISSIONS: (state: any, prrmissions: any) => {
+    state.prrmissions = prrmissions;
   }
 };
 
@@ -44,12 +48,13 @@ const actions = {
     return new Promise((resolve, reject) => {
       findInfo(state.token)
         .then((response: any) => {
-          const { roles, name } = response;
+          const { roles, name, prrmissions } = response;
           if (!roles || roles.length <= 0) {
             reject('用户角色信息不能为空');
           }
           // 保存用户信息到store
           commit('SET_ROLES', roles);
+          commit('SET_PRRMISSIONS', prrmissions);
           commit('SET_NAME', name);
           resolve(response);
         })
@@ -65,8 +70,9 @@ const actions = {
       // 退出登录，删除信息
       commit('SET_TOKEN', '');
       commit('SET_ROLES', []);
+      commit('SET_PRRMISSIONS', []);
       removeToken();
-      // resetRouter()
+      resetRouter();
       resolve();
     });
   },
@@ -76,6 +82,7 @@ const actions = {
     return new Promise((resolve: any) => {
       commit('SET_TOKEN', '');
       commit('SET_ROLES', []);
+      commit('SET_PRRMISSIONS', []);
       removeToken();
       resolve();
     });

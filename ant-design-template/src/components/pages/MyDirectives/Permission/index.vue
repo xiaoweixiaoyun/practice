@@ -25,18 +25,21 @@
         <br />
         登录之后获取权限并存入：localStorage.setItem('PERMISSIONS', ['user:view', 'role:update', 'dept:add', 'role:add']);
         <br />
-        使用方法：v-permission="['usr:editor','usr:insert']"
+        使用方法：v-permission="['user:editor','user:insert']"
       </p>
     </div>
     <br />
-    <a-button v-permission="['usr:editor']" type="primary" style="margin-left: 10px;">
+    <a-button v-permission="['user:editor']" type="primary" style="margin-left: 10px;">
       editor
     </a-button>
-    <a-button v-permission="['usr:update']" type="primary" style="margin-left: 10px;">
+    <a-button v-permission="['user:update']" type="primary" style="margin-left: 10px;">
       update
     </a-button>
-    <a-button v-permission="['usr:insert']" type="primary" style="margin-left: 10px;">
+    <a-button v-permission="['user:insert']" type="primary" style="margin-left: 10px;">
       insert
+    </a-button>
+    <a-button v-permission="['user:delete']" type="primary" style="margin-left: 10px;">
+      delete
     </a-button>
   </div>
 </template>

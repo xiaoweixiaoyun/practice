@@ -95,7 +95,7 @@ export default {
       router.push({ name: val[0] });
     });
     // 获取权限路由
-    const routes = computed(() => store.getters.permissionRoutes.filter(item => !item.hidden) || []);
+    const routes = computed(() => store.getters.rolesRoutes.filter(item => !item.hidden) || []);
     return {
       openKeys,
       selectedKeys,

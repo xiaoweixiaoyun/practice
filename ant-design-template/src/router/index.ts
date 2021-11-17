@@ -18,7 +18,7 @@ export const setupRouter = (app: any) => {
 };
 
 export const resetRouter = () => {
-  const resetWhiteNameList = ['Login'] as any;
+  const resetWhiteNameList = ['Login','Error'] as any;
   router.getRoutes().forEach(route => {
     const { name } = route;
     if (name && !resetWhiteNameList.includes(name)) {

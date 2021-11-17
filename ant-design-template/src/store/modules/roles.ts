@@ -5,7 +5,7 @@ import { asyncRoutes, constantRoutes } from '@/router/index';
  * @param roles
  * @param route
  */
-function hasPermission(roles: any, route: any) {
+function hasRoles(roles: any, route: any) {
   if (route.meta && route.meta.roles) {
     return roles.some((role: any) => route.meta.roles.includes(role));
   }
@@ -22,7 +22,7 @@ export function filterAsyncRoutes(routes: any, roles: any) {
 
   routes.forEach((route: any) => {
     const tmp = { ...route };
-    if (hasPermission(roles, tmp)) {
+    if (hasRoles(roles, tmp)) {
       if (tmp.children) {
         tmp.children = filterAsyncRoutes(tmp.children, roles);
       }
@@ -54,7 +54,7 @@ const actions = {
       } else {
         accessedRoutes = filterAsyncRoutes(asyncRoutes, roles);
       }
-      commit('SET_ROUTES', accessedRoutes);
+      commit('SET_ROUTES', filterAsyncRoutes(asyncRoutes, roles));
       resolve(accessedRoutes);
     });
   }

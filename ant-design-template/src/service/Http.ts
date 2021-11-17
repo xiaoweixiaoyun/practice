@@ -182,21 +182,21 @@ export class HttpService {
   public errorHandle(res: any) {
     message.warn(res.msg); // 统一谈服务端提示,我们提示统一由服务端提供
     // 状态码判断
-    switch (res.status) {
-      case -102:
-        console.log(-102);
-        break;
-      case -152:
-        console.log(-152);
-        break;
-      case -153:
-        console.log(-153);
-        break;
-      case -154:
-        console.log(-154);
-        break;
-      default:
-        console.log(200);
-    }
+    // switch (res.status) {
+    //   case -102:
+    //     console.log(-102);
+    //     break;
+    //   case -152:
+    //     console.log(-152);
+    //     break;
+    //   case -153:
+    //     console.log(-153);
+    //     break;
+    //   case -154:
+    //     console.log(-154);
+    //     break;
+    //   default:
+    //     console.log(200);
+    // }
   }
 }

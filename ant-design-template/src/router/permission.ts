@@ -27,7 +27,7 @@ router.beforeEach(async (to, from, next) => {
         try {
           const { roles } = await store.dispatch('user/getInfo');
           // 根据用户角色，动态获取有权限的路由
-          const accessRoutes = await store.dispatch('permission/generateRoutes', roles);
+          const accessRoutes = await store.dispatch('roles/generateRoutes', roles);
           // 动态挂载路由
           accessRoutes.forEach((route: any) => {
             router.addRoute(route);

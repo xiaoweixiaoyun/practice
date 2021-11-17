@@ -10,7 +10,7 @@ export default [
         path: 'home',
         name: 'Home',
         component: () => import('@/components/pages/Home/index.vue'),
-        meta: { title: '首页', icon: 'fa fa-home', roles: ['admin', 'guest'] }
+        meta: { title: '首页', icon: 'fa fa-home' }
       }
     ]
   },
@@ -18,7 +18,7 @@ export default [
     path: '/my-conponents',
     name: 'MyConponents',
     component: Layout,
-    meta: { title: '我的组件库', icon: 'fa fa-cubes', roles: ['admin'] },
+    meta: { title: '我的组件库', icon: 'fa fa-cubes' },
     redirect: 'loading',
     children: [
       {
@@ -40,7 +40,7 @@ export default [
     name: 'MyDirectives',
     component: Layout,
     redirect: 'show-tips',
-    meta: { title: '我的指令库', icon: 'fa fa-code', roles: ['admin'] },
+    meta: { title: '我的指令库', icon: 'fa fa-code' },
     children: [
       {
         path: 'show-tips',
