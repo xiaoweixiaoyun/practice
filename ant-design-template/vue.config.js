@@ -1,7 +1,7 @@
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const path = require('path');
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production' ? './' : '/',
+  publicPath: process.env.NODE_ENV === 'production' ? './' : './',
   lintOnSave: process.env.NODE_ENV === 'development',
   devServer: {
     before: require('./mock/index.ts'),

@@ -3,7 +3,8 @@ export default {
     let width = '',
       height = '';
     function isReize() {
-      const style = document.defaultView?.getComputedStyle(el) as any;
+      const doc = document.defaultView as any;
+      const style = doc.getComputedStyle(el) as any;
       if (width !== style.width || height !== style.height) {
         binding.value(); // 执行传入的方法
       }

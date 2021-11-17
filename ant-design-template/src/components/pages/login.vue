@@ -54,7 +54,6 @@ import { defineComponent, reactive, ref, UnwrapRef } from 'vue';
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
-import { message } from 'ant-design-vue';
 export default defineComponent({
   name: 'Login',
   components: {
@@ -90,14 +89,9 @@ export default defineComponent({
       wrapperCol: { span: 24 }
     };
     const handleFinish = () => {
-      store
-        .dispatch('user/login', formState)
-        .then(() => {
-          router.push('/home');
-        })
-        .catch(() => {
-          message.warn('用户名或密码错误，请重新输入');
-        });
+      store.dispatch('user/login', formState).then(() => {
+        router.push('/home');
+      });
     };
     return {
       Logo,
