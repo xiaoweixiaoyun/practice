@@ -49,7 +49,6 @@ export function getAsyncRoutes(routes: any) {
  */
 export function filterAsyncRoutes(routes: any, roles: any) {
   const res = [] as any;
-
   routes.forEach((route: any) => {
     const tmp = { ...route };
     if (hasRoles(roles, tmp)) {
