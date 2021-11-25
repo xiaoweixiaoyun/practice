@@ -55,4 +55,7 @@ export default {
   display: flex;
   align-items: center;
 }
+.ant-dropdown-menu {
+  margin-top: 17px;
+}
 </style>

@@ -38,7 +38,7 @@
         </div>
         <div class="header-right">
           <Enlarge />
-          <Github />
+          <LanguageSelect />
           <UserInfo />
         </div>
       </a-layout-header>
@@ -65,7 +65,7 @@ import SubMenu from '@/components/layout/SubMenu/index.vue';
 import Collapse from '@/components/layout/Collapse/index.vue';
 import Breadcrumb from '@/components/layout/Breadcrumb/index.vue';
 import Enlarge from '@/components/layout/Enlarge/index.vue';
-import Github from '@/components/layout/Github/index.vue';
+import LanguageSelect from '@/components/layout/LanguageSelect/index.vue';
 import UserInfo from '@/components/layout/UserInfo/index.vue';
 import BreadTab from '@/components/layout/BreadTab/index.vue';
 import { computed, ref, watch } from 'vue';
@@ -79,7 +79,7 @@ export default {
     Collapse,
     Breadcrumb,
     Enlarge,
-    Github,
+    LanguageSelect,
     UserInfo,
     BreadTab
   },
