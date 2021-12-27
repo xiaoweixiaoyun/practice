@@ -8,9 +8,11 @@
     </template>
     <template v-for="item in route.children">
       <a-menu-item v-if="!item.children || item.children.length === 0" :key="item.name">
-        <span className="anticon">
-          <i :class="[item.meta.icon, 'fa-lg', 'fa-fw']"></i>
-        </span>
+        <template #icon>
+          <span className="anticon">
+            <i :class="[item.meta.icon, 'fa-lg', 'fa-fw']"></i>
+          </span>
+        </template>
         <span>{{ item.meta.title }}</span>
       </a-menu-item>
       <sub-menu v-else :key="item.name" :route="item" />
