@@ -13,7 +13,7 @@
           <!-- 单个菜单 -->
           <a-menu-item v-if="!item.children || item.children.length === 0" :key="item.name">
             <span className="anticon">
-              <i :class="[item.meta.icon, 'fa-lg']"></i>
+              <i :class="[item.meta.icon, 'fa-lg', 'fa-fw']"></i>
             </span>
             <span>{{ item.meta.title }}</span>
           </a-menu-item>
@@ -21,7 +21,7 @@
           <template v-else-if="!item.name && item.children.length > 0">
             <a-menu-item v-for="e in item.children" :key="e.name">
               <span className="anticon">
-                <i :class="[e.meta.icon, 'fa-lg']"></i>
+                <i :class="[e.meta.icon, 'fa-lg', 'fa-fw']"></i>
               </span>
               <span>{{ e.meta.title }}</span>
             </a-menu-item>

@@ -2,15 +2,24 @@
 
 @link-color: #636363;
 
-.ant-menu-item,
-.ant-menu-submenu-title {
-  padding-left: 10px !important;
+.ant-spin-nested-loading,
+.ant-spin-container {
+  height: 100%;
 }
 
 .ant-menu-sub > .ant-menu-item {
   padding-left: 20px !important;
 }
 
-.ant-form-item {
-  margin-bottom: 10px;
+.ant-menu-inline.ant-menu-root .ant-menu-item > .ant-menu-title-content,
+.ant-menu-inline.ant-menu-root .ant-menu-submenu-title > .ant-menu-title-content {
+  display: flex;
+  align-items: center;
+}
+
+.ant-menu.ant-menu-inline-collapsed > .ant-menu-item,
+.ant-menu.ant-menu-inline-collapsed > .ant-menu-submenu > .ant-menu-submenu-title,
+.ant-menu.ant-menu-inline-collapsed > .ant-menu-item-group > .ant-menu-item-group-list > .ant-menu-item,
+.ant-menu.ant-menu-inline-collapsed > .ant-menu-item-group > .ant-menu-item-group-list > .ant-menu-submenu > .ant-menu-submenu-title {
+  padding-left: 24px;
 }

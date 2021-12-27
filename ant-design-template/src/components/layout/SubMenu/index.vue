@@ -2,14 +2,14 @@
   <a-sub-menu :key="route.name">
     <template v-slot:title>
       <span className="anticon">
-        <i :class="[route.meta.icon, 'fa-lg']"></i>
+        <i :class="[route.meta.icon, 'fa-lg', 'fa-fw']"></i>
       </span>
       <span>{{ route.meta.title }}</span>
     </template>
     <template v-for="item in route.children">
       <a-menu-item v-if="!item.children || item.children.length === 0" :key="item.name">
         <span className="anticon">
-          <i :class="[item.meta.icon, 'fa-lg']"></i>
+          <i :class="[item.meta.icon, 'fa-lg', 'fa-fw']"></i>
         </span>
         <span>{{ item.meta.title }}</span>
       </a-menu-item>
