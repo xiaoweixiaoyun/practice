@@ -44,10 +44,10 @@
           <template #overlay>
             <a-menu @click="handleMenuClick">
               <a-menu-item key="1">
-                {{ $t('login.string_cn') }}
+                {{ $t('login.stringCn') }}
               </a-menu-item>
               <a-menu-item key="2">
-                {{ $t('login.string_en') }}
+                {{ $t('login.stringEn') }}
               </a-menu-item>
             </a-menu>
           </template>

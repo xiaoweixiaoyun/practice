@@ -32,6 +32,12 @@ export default [
         name: 'ImportExcle',
         component: () => import('@/components/pages/MyConponents/ImportExcle/index.vue'),
         meta: { title: '自定义Excel上传组件' }
+      },
+      {
+        path: '/toast',
+        name: 'Toast',
+        component: () => import('@/components/pages/MyConponents/Toast/index.vue'),
+        meta: { title: 'Toast组件' }
       }
     ]
   },

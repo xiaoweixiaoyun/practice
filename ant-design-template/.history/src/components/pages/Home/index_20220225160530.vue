@@ -42,7 +42,15 @@
   </div>
 </template>
 <script lang="ts">
-export default {};
+import getCssInit from "@/composables/home";
+export default {
+  setup() {
+    const { cssList } = getCssInit();
+    return {
+      cssList
+    };
+  }
+};
 </script>
 <style lang="less" scoped>
 .app-wrapper {

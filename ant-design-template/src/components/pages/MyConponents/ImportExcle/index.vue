@@ -25,8 +25,8 @@
   </div>
 </template>
 <script lang="ts">
-import ImportExcle from '@/components/molecules/ImportExcle/index.vue';
-import importEmit from '@/components/molecules/ImportExcle/importEmit';
+import ImportExcle from '@/plugins/ImportExcle/index.vue';
+import importEmit from '@/plugins/ImportExcle/index';
 export default {
   name: 'Index',
   components: {

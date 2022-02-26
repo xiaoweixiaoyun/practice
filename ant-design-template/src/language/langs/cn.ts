@@ -5,8 +5,8 @@ const cn = {
     text: '后台管理',
     message: '请输入用户名',
     message2: '请输入密码',
-    string_cn: '中文',
-    string_en: '英文'
+    stringCn: '中文',
+    stringEn: '英文'
   }
 };
 
