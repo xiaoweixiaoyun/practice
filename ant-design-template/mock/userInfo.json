@@ -1,0 +1,9 @@
+{
+  "code": 200,
+  "data": {
+    "roles": ["admin"],
+    "prrmissions": ["user:editor", "user:delete", "user:update", "user:insert"],
+    "name": "Admin"
+  },
+  "message": "ok"
+}

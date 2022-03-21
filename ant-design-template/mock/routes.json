@@ -1,0 +1,35 @@
+[
+  {
+    "path": "/",
+    "name": "",
+    "component": "Layout",
+    "redirect": "home",
+    "children": [
+      {
+        "path": "/home",
+        "component": "components/pages/Home/index.vue",
+        "name": "Home",
+        "meta": {
+          "title": "首页",
+          "icon": "fa fa-home",
+          "roles": ["admin"]
+        }
+      }
+    ]
+  },
+  {
+    "path": "/my-conponents",
+    "name": "MyConponents",
+    "component": "Layout",
+    "meta": { "title": "我的组件库", "icon": "fa fa-cubes" },
+    "redirect": "loading",
+    "children": [
+      {
+        "path": "/loading",
+        "component": "components/pages/MyConponents/Loading/index.vue",
+        "name": "Loading",
+        "meta": { "title": "全局等待组件"}
+      }
+    ]
+  }
+]

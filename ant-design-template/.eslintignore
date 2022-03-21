@@ -1,0 +1,10 @@
+assets
+dist
+coverage
+node_modules
+bin
+lib
+types
+.eslintrc.js
+.prettierrc.js
+.stylelintrc.js
